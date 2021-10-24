@@ -1,4 +1,7 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 import Data.List
+import Data.Maybe
 import System.Random
 
 -- https://wiki.haskell.org/99_questions/1_to_10
@@ -147,3 +150,26 @@ range start end = take (end - start + 1) $ iterate (+1) start
 -- 23 randomly select
 rndSelect :: [a] -> Int -> a
 rndSelect = undefined
+
+
+-- closest timestamps difference
+toMinutes :: [Char] -> Maybe Int
+toMinutes [a, b ,c, d] = Just $ (read [a,b] :: Int) * 60 + (read [c,d] :: Int)
+toMinutes _ = Nothing
+
+zip2 :: [a] -> [(a,a)]
+zip2 xs@(x:xTail) = zip xs xTail
+
+appendHead :: [Int] -> [Int]
+appendHead xs@(x:xTail) =  xs ++ [x + 24 * 60]
+
+diffhelper :: [String] -> Int
+diffhelper = foldl1 min .  map (\(a,b) -> b-a) .  zip2 . appendHead . sort . catMaybes. map toMinutes
+
+--  ["0000","2359", "0800", "0900",  "0601", "jf:jfj"]
+smallestDiff :: [String] -> Int
+smallestDiff xs
+  | len > 24 * 60 = 0
+  | len <=1 = error "invalid inputs"
+  | otherwise = diffhelper xs
+  where len = length xs
