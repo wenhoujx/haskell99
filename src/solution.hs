@@ -1,4 +1,5 @@
 import Data.List
+import System.Random
 
 -- https://wiki.haskell.org/99_questions/1_to_10
 -- 01 last
@@ -145,3 +146,4 @@ range start end = take (end - start + 1) $ iterate (+1) start
 
 -- 23 randomly select
 rndSelect :: [a] -> Int -> a
+rndSelect = undefined
