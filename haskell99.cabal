@@ -31,8 +31,7 @@ library
   hs-source-dirs:
       src
   build-depends:
-                base >=4.7 && <5
-                random >= 1.2.0
+      base >=4.7 && <5
   default-language: Haskell2010
 
 executable haskell99-exe
@@ -43,9 +42,8 @@ executable haskell99-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-                    base >=4.7 && <5
-                , haskell99
-                , random >= 1.2.0
+      base >=4.7 && <5
+    , haskell99
   default-language: Haskell2010
 
 test-suite haskell99-test
@@ -57,7 +55,6 @@ test-suite haskell99-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-                    base >=4.7 && <5
-                , haskell99
-                , random >= 1.2.0
+      base >=4.7 && <5
+    , haskell99
   default-language: Haskell2010
